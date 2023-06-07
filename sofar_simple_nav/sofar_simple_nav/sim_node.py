@@ -6,6 +6,7 @@ import time
 from rclpy.node import Node
 from std_msgs.msg import Int64
 from geometry_msgs.msg import Pose2D, Twist, Point
+
 from sofar_simple_nav_interface.srv import PathService, GripperService
 
 from ament_index_python.packages import get_package_share_directory
@@ -45,7 +46,7 @@ class NavigationSimNode(Node):
         self.create_service(GripperService, "/robot/grasp", self.on_gripper_service_request)
 
         # Path service to retrieve waypoints
-        self.path_srv = self.create_service(PathService, "/navigation/path", self.on_path_service_request)
+        self.create_service(PathService, "/navigation/path", self.on_path_service_request)
 
     # Timer callback for publishing robot's pose
     def on_timer_elapsed(self):

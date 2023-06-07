@@ -1,5 +1,0 @@
-sofar_simple_nav/launch/*
-sofar_simple_nav/sofar_simple_nav/__pycache__
-sofar_simple_nav/sofar_simple_nav/robot_controller.py
-sofar_simple_nav/sofar_simple_nav/robot_logic.py
-sofar_simple_nav_interface/srv/*

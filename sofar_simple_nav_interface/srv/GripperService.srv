@@ -1,0 +1,3 @@
+std_msgs/Empty dummy
+---
+std_msgs/Bool grasped
