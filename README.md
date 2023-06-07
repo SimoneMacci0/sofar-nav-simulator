@@ -17,7 +17,12 @@ Run the simulation node with the command:
 
 ## Assignment
 
-You need to implement the following architecture, made up of 3 nodes:
+
+According to which portion of the exam you need to take, you can focus on specific parts of the assignment:
+- If you're taking the full exam, read further, as you will need to implement the full architecture, made up of three nodes.
+- If you're taking the pub/sub part only (Part #2), focus on point 2) for the development of the controller.
+- If you're taking the client/service part only (Part #3), focus on part 3) for the implementation of the robot logic + you will need to implement the two service interfaces (only the .srv file, the callbacks are already implemented inside *sim_node.py*). To this extent, make sure to analyze the commented code in *sim_node.py* to correctly define the service interfaces. Of course, feel free to de-comment the code once you have provided the interfaces to test your solution.
+
 
 1) The **navigation sim node** is already provided with this repository and acts as the simulator of the mobile robot navigating in a known environment, exposing all the necessary interfaces. Specifically, the robot is tasked with bringing the crate to the goal position. To do that, the robot needs to navigate to the crate, grasp it and then bring it to the goal position (represented by a green flag). The map is randomly generated every time you launch the simulation, with an assured path between robot and its goals.
     1. *Subscribed Topic*
@@ -32,6 +37,14 @@ You need to implement the following architecture, made up of 3 nodes:
 
 3) The **robot logic node**, which acts as *high-level controller*, invoking the **/navigation/path** service to retrieve the list of waypoints, according to the path index (either to reach the crate or the final goal). The node publishes a new target waypoint on **/controller/goal** whenerer the controller signals its idle state. As soon as the robot reaches the crate, the robot logic node tries to grasp it and, if successfull, proceeds in the navigation to reach the green flag. Since we're implementing a simplified version (without actions servers), you may need to add the following piece of code at the beginning of you logic node, to ensure that the node can properly *spin*:
 
+```
+logic = RobotLogic()
+    
+# Spinning thread to make sure callbacks are executed
+spin_thread = Thread(target=rclpy.spin, args=(logic,))
+spin_thread.start()
+```
+
 ![Architecture](sofar_simple_nav/resource/architecture.png)
 
 ### Important Notes
@@ -44,4 +57,4 @@ Good luck ;)
 
 ## Expected Output
 
-![GIF](https://github.com/SimoneMacci0/sofar-final-exam/blob/main/sofar_simple_nav/resource/output-final.gif)
+![GIF](https://github.com/SimoneMacci0/sofar-nav-simulator/blob/main/sofar_simple_nav/resource/output-final.gif)
