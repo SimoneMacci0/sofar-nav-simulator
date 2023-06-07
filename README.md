@@ -1,4 +1,4 @@
-# sofar-final-exam
+# sofar-nav-simulator
 Final exam for the SOFAR 2023 course - JEMARO Session. The goal is to implement a simple navigation simulation for a mobile robot in a known environment, exploiting A* algorithm. Implementation is done via ROS2/Python with the help of the Arcade library.
 
 ## Dependencies
